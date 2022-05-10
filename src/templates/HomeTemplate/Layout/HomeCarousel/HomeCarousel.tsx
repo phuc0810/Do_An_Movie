@@ -3,8 +3,8 @@ import { Carousel } from "antd";
 
 type Props = {};
 
-const contentStyle:React.CSSProperties = {
-  height: "160px",
+const contentStyle: React.CSSProperties = {
+  height: "400px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -15,16 +15,24 @@ export default function HomeCarousel(props: Props) {
   return (
     <Carousel effect="fade">
       <div>
-        <h3 style={contentStyle}>1</h3>
+        <div style={contentStyle}>
+          <img src="http://picsum.photos/100" alt="..." className="w-full" />
+        </div>
       </div>
       <div>
-        <h3 style={contentStyle}>2</h3>
+        <div style={contentStyle}>
+          <img src="http://picsum.photos/200" alt="..." className="w-full" />
+        </div>
       </div>
       <div>
-        <h3 style={contentStyle}>3</h3>
+        <div style={contentStyle}>
+          <img src="http://picsum.photos/300" alt="..." className="w-full" />
+        </div>
       </div>
       <div>
-        <h3 style={contentStyle}>4</h3>
+        <div style={contentStyle}>
+          <img src="http://picsum.photos/400" alt="..." className="w-full" />
+        </div>
       </div>
     </Carousel>
   );

@@ -5,6 +5,7 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import New from "./pages/New/New";
 import Register from "./pages/Register/Register";
 import HomeTemplates from "./templates/HomeTemplate/HomeTemplates";
 // import {} from 'react-router-dom'
@@ -18,6 +19,7 @@ function App() {
         <HomeTemplates path="/register" component={Register} />
         <HomeTemplates path="/home" component={Home} />
         <HomeTemplates path="/contact" component={Contact} />
+        <HomeTemplates path="/new" component={New} />
 
         <HomeTemplates path="/" component={Home} />
       </Switch>
