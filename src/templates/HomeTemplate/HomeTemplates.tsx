@@ -21,6 +21,7 @@ export default function HomeTemplates(props: Props) {
             <Header />
             <HomeCarousel/>
             <props.component {...propsRoute} />
+            <hr className="mt-5"/>
             <Footer/>
           </div>
         );
