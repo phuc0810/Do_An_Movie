@@ -1,15 +1,13 @@
-const stateDefault = {
-  content: [
-    {
-      maBanner: 1,
-      maPhim: 1282,
-      hinhAnh: "https://movienew.cybersoft.edu.vn/hinhanh/ban-tay-diet-quy.png",
-    },
-  ],
-};
+import { SET_CAROUSEL } from "../actions/types/carouselType";
+
+const stateDefault = {};
 
 export const CarouselReducer = (state = stateDefault, action: any) => {
   switch (action.type) {
+    case SET_CAROUSEL: {
+      
+      return { ...state };
+    }
     default:
       return state;
   }

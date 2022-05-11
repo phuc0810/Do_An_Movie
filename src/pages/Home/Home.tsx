@@ -4,8 +4,6 @@ import HomeMenu from "./HomeMenu/HomeMenu";
 type Props = {};
 
 export default function Home(props: Props) {
-  console.log(props);
-
   return (
     <div className="container">
       <section className="text-gray-600 body-font">
