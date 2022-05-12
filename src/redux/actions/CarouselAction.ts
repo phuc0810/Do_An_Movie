@@ -1,10 +1,9 @@
-import { AnyAction } from "redux";
 import { http } from "../../util/settings/config";
+import { ThunkAction } from "../configStore";
 import { SET_CAROUSEL } from "./types/carouselType";
 
-//Naay neu dinh nghia kieu du lieu cho action thi phai tao them
-export const getCarouselAction = (): Promise<void> => {
-  return async (dispatch)  => {
+export const getCarouselAction = (): ThunkAction => {
+  return async (dispatch) => {
     try {
       const result = await http.get("/api/QuanLyPhim/LayDanhSachBanner");
       dispatch({
@@ -13,7 +12,7 @@ export const getCarouselAction = (): Promise<void> => {
       });
       console.log(result);
     } catch (error) {
-      console.log({error});
+      console.log({ error });
     }
   };
 };

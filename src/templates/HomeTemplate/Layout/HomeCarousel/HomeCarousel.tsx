@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 import { Carousel } from "antd";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/configStore";
+import { RootState, useDispatchThunk } from "../../../../redux/configStore";
 import { useDispatch } from "react-redux";
 import { getCarouselAction } from "../../../../redux/actions/CarouselAction";
 
 type Props = {};
 
-
-
 export default function HomeCarousel(props: Props) {
-  let { content } = useSelector((state: RootState) => state.CarouselReducer);
-  let dispatch = useDispatch();
+  let { imgBanner } = useSelector((state: RootState) => state.CarouselReducer);
+  let dispatchThunk = useDispatchThunk();
+
+  console.log(imgBanner);
 
   useEffect(() => {
-    dispatch(getCarouselAction());
+    dispatchThunk(getCarouselAction());
   }, []);
+  
   const contentStyle: React.CSSProperties = {
-    height: "400px",
+    height: "600px",
     color: "#fff",
     lineHeight: "160px",
     textAlign: "center",
@@ -29,21 +30,24 @@ export default function HomeCarousel(props: Props) {
 
   return (
     <Carousel effect="fade">
-      <div>
-        {/* {content.map((phim, i) => {
-          return (
+      {imgBanner.map((banner, i) => {
+        return (
+          <div key={i}>
             <div
               style={{
                 ...contentStyle,
-                backgroundImage: `url(${phim.hinhAnh})`,
+                backgroundImage: `url(${banner.hinhAnh})`,
               }}
-              key={i}
             >
-              <img src={phim.hinhAnh} alt="..." className="w-full opacity-0" />
+              <img
+                src={banner.hinhAnh}
+                alt="..."
+                className="w-full opacity-0"
+              />
             </div>
-          );
-        })} */}
-      </div>
+          </div>
+        );
+      })}
     </Carousel>
   );
 }

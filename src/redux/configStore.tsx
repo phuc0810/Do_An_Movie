@@ -1,5 +1,15 @@
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { useDispatch } from "react-redux";
+import {
+  createStore,
+  combineReducers,
+  compose,
+  applyMiddleware,
+  AnyAction,
+} from "redux";
+import thunk, {
+  ThunkDispatch as ThunkDispatchM,
+  ThunkAction as ThunkActionM,
+} from "redux-thunk";
 import { CarouselReducer } from "./reducers/CarouselReducer";
 
 const rootReducer = combineReducers({
@@ -23,4 +33,9 @@ const customCompose = compose(
 
 export const store = createStore(rootReducer, customCompose);
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch;
+export type ThunkDispatch = ThunkDispatchM<RootState, unknown, AnyAction>;
+export type ThunkAction = ThunkActionM<void, RootState, unknown, AnyAction>;
+
+export const useDispatchThunk = () => useDispatch<ThunkDispatch>();

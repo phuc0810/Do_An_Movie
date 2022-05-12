@@ -4,10 +4,9 @@ import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
 import HomeCarousel from "./Layout/HomeCarousel/HomeCarousel";
 
-
 type Props = {
-  component: any;
-  mobileComponent?: (props: any) => React.FC<Props>;
+  component: React.ElementType;
+  mobileComponent?: (props: React.ElementType) => React.FC<Props>;
   path: string;
 };
 export default function HomeTemplates(props: Props) {
@@ -19,10 +18,10 @@ export default function HomeTemplates(props: Props) {
         return (
           <div>
             <Header />
-            <HomeCarousel/>
+            <HomeCarousel />
             <props.component {...propsRoute} />
-            <hr className="mt-5"/>
-            <Footer/>
+            <hr className="mt-5" />
+            <Footer />
           </div>
         );
       }}
