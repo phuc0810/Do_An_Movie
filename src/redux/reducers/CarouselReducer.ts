@@ -9,7 +9,7 @@ type stateDf = {
 };
 
 
-export const CarouselReducer = (state = stateDefault, action: any) => {
+export const CarouselReducer = (state = stateDefault, action:any) => {
   switch (action.type) {
     case SET_CAROUSEL: {
       state.imgBanner = action.arrImg;
