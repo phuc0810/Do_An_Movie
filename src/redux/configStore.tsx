@@ -11,9 +11,11 @@ import thunk, {
   ThunkAction as ThunkActionM,
 } from "redux-thunk";
 import { CarouselReducer } from "./reducers/CarouselReducer";
+import { QuanLyPhimReducer } from "./reducers/QuanLyPhimReducer";
 
 const rootReducer = combineReducers({
   CarouselReducer: CarouselReducer,
+  QuanLyPhimReducer: QuanLyPhimReducer,
 });
 
 declare global {

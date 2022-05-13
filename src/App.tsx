@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Router, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import logo from "./logo.svg";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
@@ -9,6 +9,7 @@ import New from "./pages/New/New";
 import Register from "./pages/Register/Register";
 import HomeTemplates from "./templates/HomeTemplate/HomeTemplates";
 // import {} from 'react-router-dom'
+import Slider from "./pages/_Components/Swiper/Slider";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <HomeTemplates path="/new" component={New} />
 
         <HomeTemplates path="/" component={Home} />
+        <Route exact path='/swiper' component={Slider} />
       </Switch>
     </BrowserRouter>
   );

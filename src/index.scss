@@ -3,3 +3,8 @@
 @tailwind utilities;
 @import "./assets/scss/pages/Home/home.scss";
 @import "./assets/scss/Components/HeaderHome.scss";
+@import "./assets/scss/Components/Swiper/Slider.scss";
+
+@import "swiper/scss";
+@import "swiper/scss/navigation";
+@import "swiper/scss/pagination";

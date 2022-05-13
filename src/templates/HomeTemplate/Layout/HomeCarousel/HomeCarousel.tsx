@@ -11,8 +11,6 @@ export default function HomeCarousel(props: Props) {
   let { imgBanner } = useSelector((state: RootState) => state.CarouselReducer);
   let dispatchThunk = useDispatchThunk();
 
-  console.log(imgBanner);
-
   useEffect(() => {
     dispatchThunk(getCarouselAction());
   }, []);
