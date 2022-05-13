@@ -9,7 +9,6 @@ import New from "./pages/New/New";
 import Register from "./pages/Register/Register";
 import HomeTemplates from "./templates/HomeTemplate/HomeTemplates";
 // import {} from 'react-router-dom'
-import Slider from "./pages/_Components/Swiper/Slider";
 
 function App() {
   return (
@@ -23,7 +22,6 @@ function App() {
         <HomeTemplates path="/new" component={New} />
 
         <HomeTemplates path="/" component={Home} />
-        <Route exact path='/swiper' component={Slider} />
       </Switch>
     </BrowserRouter>
   );

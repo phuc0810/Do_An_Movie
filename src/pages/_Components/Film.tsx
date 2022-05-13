@@ -11,13 +11,13 @@ export default function Film(props: Props) {
       <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
         <img src={hinhAnh} alt={hinhAnh} />
       </h2>
-      <h1 className="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3">
+      <h1 className="title-font sm:text-2xl text-base font-medium text-gray-900 mb-3">
         {tenPhim}
       </h1>
-      <p className="leading-relaxed mb-3">
-        {moTa.length < 1000 ? moTa.substring(0, 500) : "..."}
+      <p className="leading-relaxed mb-3" style={{fontSize:'14px'}}>
+        {moTa.length < 1000 ? moTa.substring(0, 200) : "..."}
       </p>
-      <a className="text-indigo-500 inline-flex items-center">
+      <a className="text-indigo-500 inline-flex items-center relative">
         Learn More
         <svg
           className="w-4 h-4 ml-2"

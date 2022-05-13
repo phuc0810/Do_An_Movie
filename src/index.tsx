@@ -8,9 +8,9 @@ import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
 // setup antd
 import "antd/dist/antd.css";
-// eslint-disable-next-line
+
 import "swiper/css/bundle";
-import "./styles.css";
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

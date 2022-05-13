@@ -3,19 +3,41 @@ import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/scss";
+import "swiper/scss/pagination";
 
-import "./styles.css";
+import "../../../assets/scss/Components/Swiper/SwiperStyle.scss";
 
 // import required modules
 import { Pagination } from "swiper";
+import Film from "../Film";
 
-export default function App() {
+type Props = {
+  arrFilm: Film[];
+};
+
+export default function Slider(props: Props) {
+  let { arrFilm } = props;
+  console.log(arrFilm);
+
+  let renderFilm = () => {
+    return arrFilm.map((phim, i) => {
+      return (
+        <SwiperSlide key={i}>
+          <div className="flex flex-wrap -m-4">
+            <div className="p-4 lg:w-1/3" style={{width:'100%',height:'650px'}}>
+              <Film phim={phim} />
+            </div>
+          </div>
+        </SwiperSlide>
+      );
+    });
+  };
+
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={4}
         spaceBetween={30}
         pagination={{
           clickable: true,
@@ -23,16 +45,22 @@ export default function App() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {renderFilm()}
       </Swiper>
     </>
   );
+}
+interface Film {
+  maPhim: number;
+  tenPhim: string;
+  biDanh: string;
+  trailer: string;
+  hinhAnh: string;
+  moTa: string;
+  maNhom: string;
+  ngayKhoiChieu: string;
+  danhGia: number;
+  hot: boolean;
+  dangChieu: boolean;
+  sapChieu: boolean;
 }
