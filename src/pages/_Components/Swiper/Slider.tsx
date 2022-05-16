@@ -10,7 +10,8 @@ import "../../../assets/scss/Components/Swiper/SwiperStyle.scss";
 
 // import required modules
 import { Pagination } from "swiper";
-import Film from "../Film";
+import Film from "../Flim/Film";
+import Film_Slip from "../Flim/Film_Slip";
 
 type Props = {
   arrFilm: Film[];
@@ -18,15 +19,18 @@ type Props = {
 
 export default function Slider(props: Props) {
   let { arrFilm } = props;
-  console.log(arrFilm);
+  // console.log(arrFilm);
 
   let renderFilm = () => {
-    return arrFilm.map((phim, i) => {
+    return arrFilm.slice(0, 12).map((phim, i) => {
       return (
         <SwiperSlide key={i}>
           <div className="flex flex-wrap -m-4">
-            <div className="p-4 lg:w-1/3" style={{width:'100%',height:'650px'}}>
-              <Film phim={phim} />
+            <div
+              className="p-0 lg:w-1/3"
+              style={{ width: "100%"}}
+            >
+              <Film_Slip phim={phim} />
             </div>
           </div>
         </SwiperSlide>

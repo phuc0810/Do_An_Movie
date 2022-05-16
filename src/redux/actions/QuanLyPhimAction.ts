@@ -18,3 +18,13 @@ export const getDanhSachPhim = (): ThunkAction => {
     }
   };
 };
+
+export const getDanhSachCumRap = (): ThunkAction => {
+  return async (dispatch) => {
+    try {
+      // const result = await http.get()
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

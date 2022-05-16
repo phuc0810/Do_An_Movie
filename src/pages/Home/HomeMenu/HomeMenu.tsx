@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs, Radio, Space, RadioChangeEvent } from "antd";
+import { useDispatchThunk } from "../../../redux/configStore";
+import { getDanhSachCumRap } from "../../../redux/actions/QuanLyPhimAction";
+import { useDispatch } from "react-redux";
 
 const { TabPane } = Tabs;
 
@@ -22,15 +25,6 @@ export default function HomeMenu(props: Props) {
 
   return (
     <div>
-      <Space style={{ marginBottom: 24 }}>
-        Tab position:
-        <Radio.Group value={tabPosition} onChange={changeTabPosition}>
-          <Radio.Button value="top">top</Radio.Button>
-          <Radio.Button value="bottom">bottom</Radio.Button>
-          <Radio.Button value="left">left</Radio.Button>
-          <Radio.Button value="right">right</Radio.Button>
-        </Radio.Group>
-      </Space>
       <Tabs tabPosition={tabPosition}>
         <TabPane tab={<img src="http://picsum.photos/100" alt="..." />} key="1">
           Content of Tab 1

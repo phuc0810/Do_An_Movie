@@ -16,13 +16,13 @@ export default function HomeCarousel(props: Props) {
   }, []);
   
   const contentStyle: React.CSSProperties = {
-    height: "600px",
+    height: "500px",
     color: "#fff",
     lineHeight: "160px",
     textAlign: "center",
     background: "#364d79",
     backgroundPosition: "center",
-    backgroundSize: "100%",
+    backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
   };
 
