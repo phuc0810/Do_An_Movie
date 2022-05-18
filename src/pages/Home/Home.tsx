@@ -1,47 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { dsPhimAction } from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.reducer";
+import {
+  useDSPhim,
+  useSelectorDanhSachPhim,
+} from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.selector";
 import Slider from "../_Components/Swiper/Slider";
 import HomeMenu from "./HomeMenu/HomeMenu";
 
 type Props = {};
 
 export default function Home(props: Props) {
-  // let activePhimSapChieu = sapChieu === true ? "activePhim" : "noneActive";
-  // let activePhimDangChieu = dangChieu === true ? "activePhim" : "noneActive";
-
   // call api lay du lieu
+  let { arrFilm } = useDSPhim();
+  let { dangChieu, sapChieu } = useSelectorDanhSachPhim();
+  let dispatch = useDispatch();
+
+  // xu ly btn
+  let activePhimSapChieu = sapChieu === true ? "activePhim" : "noneActive";
+  let activePhimDangChieu = dangChieu === true ? "activePhim" : "noneActive";
+
   return (
     <div className="container">
       <section className="text-gray-600 body-font">
         <div className="container px-5 pb-5 mx-auto">
           <button
             type="button"
-            className="px-8 py-3 font-semibold rounded mr-2 mt-2 "
-            // onClick={() => {
-            //   let action = {
-            //     type: PHIM_DANG_CHIEU,
-            //   };
-            //   dispatch(action);
-            // }}
+            className={`${activePhimDangChieu} px-8 py-3 font-semibold rounded mr-2 mt-2 `}
+            onClick={() => dispatch(dsPhimAction.changeDangChieu(true))}
           >
             Phim Đang Chiếu
           </button>
           <button
             id="btnSapchieu"
             type="button"
-            className=" px-8 py-3 font-semibold rounded mt-2"
-            // onClick={(e) => {
-            //   let action = {
-            //     type: PHIM_SAP_CHIEU,
-            //     e: e.target,
-            //   };
-            //   dispatch(action);
-            // }}
+            className={`${activePhimSapChieu} px-8 py-3 font-semibold rounded mt-2`}
+            onClick={() => dispatch(dsPhimAction.changeSapChieu(true))}
           >
             Phim Sắp Chiếu
           </button>
-          <Slider />
+          <Slider arrFilm={arrFilm} />
         </div>
       </section>
       <div className="Menu ml-10">

@@ -1,20 +1,22 @@
 import { PlayCircleOutlined } from "@ant-design/icons";
+import { arrFilm } from "@types";
 import React from "react";
 
 import "../../../assets/scss/Components/Flim/Film_Slip.scss";
 
 type Props = {
-
+  phim: arrFilm;
 };
 
 export default function Film_Slip(props: Props) {
   // console.log(props);
+  let { hinhAnh, tenPhim } = props.phim;
   return (
     <div className="flip-card mt-2" style={{ height: "390px" }}>
       <div className="flip-card-inner">
         <div
           className="flip-card-front setupBgImg"
-          // style={{ backgroundImage: `url(${hinhAnh})` }}
+          style={{ backgroundImage: `url(${hinhAnh})` }}
         >
           <img
             className="w-full opacity-0"
@@ -36,7 +38,7 @@ export default function Film_Slip(props: Props) {
               position: "absolute",
               top: 0,
               left: 0,
-              // backgroundImage: `url(${hinhAnh})`,
+              backgroundImage: `url(${hinhAnh})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
@@ -67,7 +69,7 @@ export default function Film_Slip(props: Props) {
               <div className="rounded-full cursor-pointer">
                 <PlayCircleOutlined style={{ fontSize: "50px" }} />
               </div>
-              <div className="text-2xl mt-2 font-bold">ten phim</div>
+              <div className="text-2xl mt-2 font-bold">{tenPhim}</div>
             </div>
           </div>
         </div>
@@ -83,38 +85,4 @@ export default function Film_Slip(props: Props) {
     </div>
   );
 }
-interface Film {
-  maPhim: number;
-  tenPhim: string;
-  biDanh: string;
-  trailer: string;
-  hinhAnh: string;
-  moTa: string;
-  maNhom: string;
-  ngayKhoiChieu: string;
-  danhGia: number;
-  hot: boolean;
-  dangChieu: boolean;
-  sapChieu: boolean;
-}
 
-interface BaseSyntheticEvent<E = object, C = any, T = any> {
-  nativeEvent: E;
-  currentTarget: C;
-  target: T;
-  bubbles: boolean;
-  cancelable: boolean;
-  defaultPrevented: boolean;
-  eventPhase: number;
-  isTrusted: boolean;
-  preventDefault(): void;
-  isDefaultPrevented(): boolean;
-  stopPropagation(): void;
-  isPropagationStopped(): boolean;
-  persist(): void;
-  timeStamp: number;
-  type: string;
-}
-
-interface SyntheticEvent<T = Element, E = Event>
-  extends BaseSyntheticEvent<E, EventTarget & T, EventTarget> {}

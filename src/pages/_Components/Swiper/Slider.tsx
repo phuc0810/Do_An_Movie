@@ -12,30 +12,30 @@ import "../../../assets/scss/Components/Swiper/SwiperStyle.scss";
 import { Pagination } from "swiper";
 import Film from "../Flim/Film";
 import Film_Slip from "../Flim/Film_Slip";
+import { arrFilm } from "@types";
 
 type Props = {
-  // arrFilm: Film[];
+  arrFilm?: arrFilm[];
 };
 
 export default function Slider(props: Props) {
   // console.log(arrFilm);
+  let { arrFilm } = props;
+  console.log(arrFilm);
 
-  // let renderFilm = () => {
-  //   return arrFilm.slice(0, 12).map((phim, i) => {
-  //     return (
-  //       <SwiperSlide key={i}>
-  //         <div className="flex flex-wrap -m-4">
-  //           <div
-  //             className="p-0 lg:w-1/3"
-  //             style={{ width: "100%"}}
-  //           >
-  //             <Film_Slip phim={phim} />
-  //           </div>
-  //         </div>
-  //       </SwiperSlide>
-  //     );
-  //   });
-  // };
+  let renderFilm = () => {
+    return arrFilm?.slice(0, 12).map((phim, i) => {
+      return (
+        <SwiperSlide key={i}>
+          <div className="flex flex-wrap -m-4">
+            <div className="p-0 lg:w-1/3" style={{ width: "100%" }}>
+              <Film_Slip phim={phim} />
+            </div>
+          </div>
+        </SwiperSlide>
+      );
+    });
+  };
 
   return (
     <>
@@ -48,50 +48,8 @@ export default function Slider(props: Props) {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {/* {renderFilm()} */}
-        <SwiperSlide>
-          <div className="flex flex-wrap -m-4">
-            <div className="p-0 lg:w-1/3" style={{ width: "100%" }}>
-              <Film_Slip />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex flex-wrap -m-4">
-            <div className="p-0 lg:w-1/3" style={{ width: "100%" }}>
-              <Film_Slip />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex flex-wrap -m-4">
-            <div className="p-0 lg:w-1/3" style={{ width: "100%" }}>
-              <Film_Slip />
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="flex flex-wrap -m-4">
-            <div className="p-0 lg:w-1/3" style={{ width: "100%" }}>
-              <Film_Slip />
-            </div>
-          </div>
-        </SwiperSlide>
+        {renderFilm()}
       </Swiper>
     </>
   );
-}
-interface Film {
-  maPhim: number;
-  tenPhim: string;
-  biDanh: string;
-  trailer: string;
-  hinhAnh: string;
-  moTa: string;
-  maNhom: string;
-  ngayKhoiChieu: string;
-  danhGia: number;
-  hot: boolean;
-  dangChieu: boolean;
-  sapChieu: boolean;
 }

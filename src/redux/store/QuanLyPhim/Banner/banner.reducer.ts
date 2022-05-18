@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { imgBanner } from "@types";
 
-interface initialState {
+interface typeInitialState {
   imgBanner?: imgBanner[];
 }
 
-const initialState: initialState = {
-};
+const initialState: typeInitialState = {};
 
 export const { reducer: bannerReducer, actions: bannerAction } = createSlice({
   name: "banner",
