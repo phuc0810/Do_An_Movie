@@ -1,20 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Carousel } from "antd";
-import { useSelector } from "react-redux";
-import { RootState, useDispatchThunk } from "../../../../redux/configStore";
+import { useBanner, useSelectorBanner } from "redux/store/QuanLyPhim";
 import { useDispatch } from "react-redux";
-import { getCarouselAction } from "../../../../redux/actions/CarouselAction";
 
 type Props = {};
 
 export default function HomeCarousel(props: Props) {
-  let { imgBanner } = useSelector((state: RootState) => state.CarouselReducer);
-  let dispatchThunk = useDispatchThunk();
-
-  useEffect(() => {
-    dispatchThunk(getCarouselAction());
-  }, []);
   
+  const { imgBanner } = useBanner();
+  console.log(imgBanner);
+
+  // const { imgBanner } = useBanner();
+  // console.log(imgBanner);
+
   const contentStyle: React.CSSProperties = {
     height: "500px",
     color: "#fff",
@@ -28,7 +26,7 @@ export default function HomeCarousel(props: Props) {
 
   return (
     <Carousel effect="fade">
-      {imgBanner.map((banner, i) => {
+      {imgBanner?.map((banner, i) => {
         return (
           <div key={i}>
             <div

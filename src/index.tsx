@@ -5,11 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 //setup redux
 import { Provider } from "react-redux";
-import { store } from "./redux/configStore";
 // setup antd
 import "antd/dist/antd.css";
 
 import "swiper/css/bundle";
+import { store } from "./redux/store";
 
 ReactDOM.render(
   <Provider store={store}>

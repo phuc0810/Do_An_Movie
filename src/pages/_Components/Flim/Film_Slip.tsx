@@ -4,25 +4,23 @@ import React from "react";
 import "../../../assets/scss/Components/Flim/Film_Slip.scss";
 
 type Props = {
-  phim: Film;
+
 };
 
 export default function Film_Slip(props: Props) {
   // console.log(props);
-  let { hinhAnh,tenPhim } = props.phim;
-
   return (
-    <div className="flip-card mt-2" style={{height:'390px'}}>
+    <div className="flip-card mt-2" style={{ height: "390px" }}>
       <div className="flip-card-inner">
         <div
           className="flip-card-front setupBgImg"
-          style={{ backgroundImage: `url(${hinhAnh})` }}
+          // style={{ backgroundImage: `url(${hinhAnh})` }}
         >
           <img
             className="w-full opacity-0"
             src="http://picsum.photos/200"
             alt="Avatar"
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: "100%", height: "100%" }}
             // onError={(e) => {
             //   e.target.onerror = null;
             //   e.target.src = "https://picsum.photos/300/300";
@@ -38,10 +36,10 @@ export default function Film_Slip(props: Props) {
               position: "absolute",
               top: 0,
               left: 0,
-              backgroundImage: `url(${hinhAnh})`,
-              backgroundPosition:'center',
-              backgroundSize:'cover',
-              backgroundRepeat:'no-repeat'
+              // backgroundImage: `url(${hinhAnh})`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
             }}
           >
             <img
@@ -49,10 +47,10 @@ export default function Film_Slip(props: Props) {
               src="http://picsum.photos/200"
               alt="Avatar"
               style={{ width: 300, height: 400 }}
-                // onError={(e) => {
-                //   e.target.onerror = null;
-                //   e.target.src = "https://picsum.photos/300/300";
-                // }}
+              // onError={(e) => {
+              //   e.target.onerror = null;
+              //   e.target.src = "https://picsum.photos/300/300";
+              // }}
             />
           </div>
           <div
@@ -69,7 +67,7 @@ export default function Film_Slip(props: Props) {
               <div className="rounded-full cursor-pointer">
                 <PlayCircleOutlined style={{ fontSize: "50px" }} />
               </div>
-              <div className="text-2xl mt-2 font-bold">{tenPhim}</div>
+              <div className="text-2xl mt-2 font-bold">ten phim</div>
             </div>
           </div>
         </div>

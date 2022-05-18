@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Tabs, Radio, Space, RadioChangeEvent } from "antd";
-import { useDispatchThunk } from "../../../redux/configStore";
-import { getDanhSachCumRap } from "../../../redux/actions/QuanLyPhimAction";
 import { useDispatch } from "react-redux";
 
 const { TabPane } = Tabs;
@@ -38,4 +36,8 @@ export default function HomeMenu(props: Props) {
       </Tabs>
     </div>
   );
+}
+
+interface heThongRapChieu{
+
 }
