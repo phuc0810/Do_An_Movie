@@ -6,6 +6,7 @@ import {
   useDSPhim,
   useSelectorDanhSachPhim,
 } from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.selector";
+import { useInfoLichChieu } from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.selector";
 import Slider from "../_Components/Swiper/Slider";
 import HomeMenu from "./HomeMenu/HomeMenu";
 
@@ -13,9 +14,14 @@ type Props = {};
 
 export default function Home(props: Props) {
   // call api lay du lieu
-  let { arrFilm } = useDSPhim();
-  let { dangChieu, sapChieu } = useSelectorDanhSachPhim();
   let dispatch = useDispatch();
+  let { arrFilm } = useDSPhim();
+  let { dangChieu, sapChieu, arrFlimChange } = useSelectorDanhSachPhim();
+  console.log(arrFlimChange);
+
+  let{ArrLichChieu}= useInfoLichChieu();
+  console.log(ArrLichChieu);
+  
 
   // xu ly btn
   let activePhimSapChieu = sapChieu === true ? "activePhim" : "noneActive";
@@ -40,7 +46,7 @@ export default function Home(props: Props) {
           >
             Phim Sắp Chiếu
           </button>
-          <Slider arrFilm={arrFilm} />
+          <Slider arrFlimChange={arrFlimChange} />
         </div>
       </section>
       <div className="Menu ml-10">

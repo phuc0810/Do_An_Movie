@@ -17,3 +17,15 @@ export interface arrFilm {
   dangChieu: boolean;
   sapChieu: boolean;
 }
+
+export interface index {
+  mang: mang[];
+}
+interface mang {
+  ten: string;
+  sdt: string;
+  mang2: mang2[];
+}
+interface mang2 {
+  
+}

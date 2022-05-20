@@ -15,16 +15,16 @@ import Film_Slip from "../Flim/Film_Slip";
 import { arrFilm } from "@types";
 
 type Props = {
-  arrFilm?: arrFilm[];
+  arrFlimChange?: arrFilm[];
 };
 
 export default function Slider(props: Props) {
   // console.log(arrFilm);
-  let { arrFilm } = props;
-  console.log(arrFilm);
+  let { arrFlimChange } = props;
+  // console.log(arrFilm);
 
   let renderFilm = () => {
-    return arrFilm?.slice(0, 12).map((phim, i) => {
+    return arrFlimChange?.slice(0, 12).map((phim, i) => {
       return (
         <SwiperSlide key={i}>
           <div className="flex flex-wrap -m-4">
