@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../rootReducer";
@@ -9,8 +10,10 @@ export const useSelectorInfoLichChieu = () =>
 export const useInfoLichChieu = () => {
   const dispatch = useDispatch<any>();
   const { ArrLichChieu } = useSelectorInfoLichChieu();
-  if (!ArrLichChieu) {
-    dispatch(getInfoLichChieu());
-  }
+  useEffect(() => {
+    if (!ArrLichChieu) {
+      dispatch(getInfoLichChieu());
+    }
+  }, []);
   return { ArrLichChieu };
 };

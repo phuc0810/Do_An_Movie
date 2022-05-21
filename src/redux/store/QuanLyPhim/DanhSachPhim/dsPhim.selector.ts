@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/store/rootReducer";
 import { getDanhSachPhim } from "./dsPhim.thunk";
-
 
 export const useSelectorDanhSachPhim = () =>
   useSelector((state: RootState) => state.dsPhimReducer);
@@ -12,8 +12,10 @@ export const useSelectorDanhSachPhim = () =>
 export const useDSPhim = () => {
   const dispatch = useDispatch<any>();
   const { arrFilm } = useSelectorDanhSachPhim();
-  if (!arrFilm) {
-    dispatch(getDanhSachPhim());
-  }
+  useEffect(() => {
+    if (!arrFilm) {
+      dispatch(getDanhSachPhim());
+    }
+  }, []);
   return { arrFilm };
 };

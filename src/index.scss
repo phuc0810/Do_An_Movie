@@ -1,11 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './assets/scss/themes/variable';
+@import "./assets/scss/themes/variable";
 @import "./assets/scss/pages/Home/home.scss";
 @import "./assets/scss/Components/HeaderHome.scss";
-
+@import "./assets/scss/pages/Home/HomeMenu/homeMenu.scss";
 // swiper scss
-@import'./assets/scss/Components/Swiper/SwiperStyle.scss';
+@import "./assets/scss/Components/Swiper/SwiperStyle.scss";
 @import "swiper/css/bundle";
-

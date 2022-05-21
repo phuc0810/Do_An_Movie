@@ -19,9 +19,8 @@ export default function Home(props: Props) {
   let { dangChieu, sapChieu, arrFlimChange } = useSelectorDanhSachPhim();
   console.log(arrFlimChange);
 
-  let{ArrLichChieu}= useInfoLichChieu();
+  let { ArrLichChieu } = useInfoLichChieu();
   console.log(ArrLichChieu);
-  
 
   // xu ly btn
   let activePhimSapChieu = sapChieu === true ? "activePhim" : "noneActive";
@@ -50,7 +49,7 @@ export default function Home(props: Props) {
         </div>
       </section>
       <div className="Menu ml-10">
-        <HomeMenu />
+        <HomeMenu ArrLichChieu={ArrLichChieu} />
       </div>
     </div>
   );

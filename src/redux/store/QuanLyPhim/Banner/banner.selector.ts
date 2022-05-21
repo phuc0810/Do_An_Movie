@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/store/rootReducer";
@@ -11,8 +12,10 @@ export const useSelectorBanner = () =>
 export const useBanner = () => {
   const dispatch = useDispatch<any>();
   const { imgBanner } = useSelectorBanner();
-  if (!imgBanner) {
-    dispatch(getBanner());
-  }
+  useEffect(() => {
+    if (!imgBanner) {
+      dispatch(getBanner());
+    }
+  }, []);
   return { imgBanner };
 };
