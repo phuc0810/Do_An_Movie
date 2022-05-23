@@ -1,6 +1,7 @@
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { arrFilm } from "@types";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import "../../../assets/scss/Components/Flim/Film_Slip.scss";
 
@@ -10,7 +11,10 @@ type Props = {
 
 export default function Film_Slip(props: Props) {
   // console.log(props);
-  let { hinhAnh, tenPhim } = props.phim;
+  let { hinhAnh, tenPhim, maPhim } = props.phim;
+
+  let history = useHistory();
+
   return (
     <div className="flip-card mt-2" style={{ height: "390px" }}>
       <div className="flip-card-inner">
@@ -75,9 +79,9 @@ export default function Film_Slip(props: Props) {
         </div>
       </div>
       <div
-        // onClick={() => {
-        //   history.push(`/detail/${item.maPhim}`);
-        // }}
+        onClick={() => {
+          history.push(`/detail/${maPhim}`);
+        }}
         className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold"
       >
         ĐẶT VÉ
@@ -85,4 +89,3 @@ export default function Film_Slip(props: Props) {
     </div>
   );
 }
-

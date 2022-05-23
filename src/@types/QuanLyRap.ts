@@ -28,3 +28,40 @@ export interface lstLichChieuTheoPhim {
   ngayChieuGioChieu: string;
   tenRap: string;
 }
+
+export interface ArrChiTietPhim {
+  biDanh: string;
+  dangChieu: boolean;
+  danhGia: number;
+  heThongRapChieu: heThongRapChieu[];
+  hinhAnh: string;
+  hot: true;
+  maNhom: string;
+  maPhim: number;
+  moTa: string;
+  ngayKhoiChieu: string;
+  sapChieu: boolean;
+  tenPhim: string;
+  trailer: string;
+}
+export interface heThongRapChieu {
+  cumRapChieu: cumRapChieu[];
+  logo: string;
+  maHeThongRap: string;
+  tenHeThongRap: string;
+}
+export interface cumRapChieu {
+  diaChi: string;
+  hinhAnh: string;
+  lichChieuPhim: lichChieuPhim[];
+  maCumRap: string;
+  tenCumRap: string;
+}
+export interface lichChieuPhim {
+  giaVe: number;
+  maLichChieu: string;
+  maRap: string;
+  ngayChieuGioChieu: string;
+  tenRap: string;
+  thoiLuong: number;
+}

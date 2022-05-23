@@ -7,6 +7,7 @@ import {
   useSelectorDanhSachPhim,
 } from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.selector";
 import { useInfoLichChieu } from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.selector";
+import HomeCarousel from "templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel";
 import Slider from "../_Components/Swiper/Slider";
 import HomeMenu from "./HomeMenu/HomeMenu";
 
@@ -28,6 +29,7 @@ export default function Home(props: Props) {
 
   return (
     <div className="container">
+      <HomeCarousel />
       <section className="text-gray-600 body-font">
         <div className="container px-5 pb-5 mx-auto">
           <button

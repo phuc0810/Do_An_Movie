@@ -2,12 +2,15 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Tabs, Radio, Space, RadioChangeEvent } from "antd";
 import { useDispatch } from "react-redux";
 import { ArrLichChieu } from "@types";
+import { NavLink } from "react-router-dom";
+import moment from "moment";
 
 const { TabPane } = Tabs;
 
 type Props = {
   ArrLichChieu: ArrLichChieu[] | undefined;
 };
+// lấy các thuộc tính cần lấy thông qua hàm map và pick trong lodash
 
 type useState = {
   tabPosition: any;
@@ -55,8 +58,8 @@ export default function HomeMenu(props: Props) {
                         alt={cumRap.hinhAnh}
                       />
                       <div
-                        style={{ width: "250px" }}
-                        className="flex justify-center items-center flex-col ml-4"
+                        style={{ width: "280px" }}
+                        className="flex justify-center items-start flex-col ml-4"
                       >
                         <p className="mb-0">{cumRap.tenCumRap}</p>
                         <span className="text-red-500">Chi Tiết</span>
@@ -66,8 +69,37 @@ export default function HomeMenu(props: Props) {
                 >
                   {cumRap.danhSachPhim.map((phim, i) => {
                     return (
-                      <div className="flex justify-center items-start flex-col py-4 border-b-4">
-                        <img width={100} src={phim.hinhAnh} alt="" />
+                      <div className="flex py-4 border-b-4" key={i}>
+                        <img
+                          width={100}
+                          src={phim.hinhAnh}
+                          alt={phim.hinhAnh}
+                          onError={(e) => (
+                            (e.currentTarget.onerror = null),
+                            (e.currentTarget.src = "http://picsum.photos/200")
+                          )}
+                        />
+                        <div className="ml-3">
+                          <h1 className="text-2xl">{phim.tenPhim}</h1>
+                          <span className="mb-8">{cumRap.diaChi}</span>
+                          <div className="grid grid-cols-8 gap-6 mt-2">
+                            {phim.lstLichChieuTheoPhim
+                              .slice(0, 18)
+                              .map((lich, i) => {
+                                return (
+                                  <NavLink
+                                    className="text-lg text-green-500"
+                                    to="/"
+                                    key={i}
+                                  >
+                                    {moment(lich.ngayChieuGioChieu).format(
+                                      "hh:mm A"
+                                    )}
+                                  </NavLink>
+                                );
+                              })}
+                          </div>
+                        </div>
                       </div>
                     );
                   })}

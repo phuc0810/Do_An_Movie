@@ -1,8 +1,7 @@
 import React, { FC, ReactNode } from "react";
-import { Route, useHistory } from "react-router-dom";
+import { Route, useHistory, useParams } from "react-router-dom";
 import Footer from "./Layout/Footer/Footer";
 import Header from "./Layout/Header/Header";
-import HomeCarousel from "./Layout/HomeCarousel/HomeCarousel";
 
 type Props = {
   component: React.ElementType;
@@ -18,7 +17,6 @@ export default function HomeTemplates(props: Props) {
         return (
           <div>
             <Header />
-            <HomeCarousel />
             <props.component {...propsRoute} />
             <hr className="mt-5" />
             <Footer />

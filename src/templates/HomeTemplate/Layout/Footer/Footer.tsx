@@ -1,103 +1,87 @@
 import React from "react";
+import { useSelectorInfoLichChieu } from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.selector";
+import _ from "lodash";
 
 type Props = {};
 
 export default function Footer(props: Props) {
+  let { ArrLichChieu } = useSelectorInfoLichChieu();
+
+  let arrHeThongRap = _.map(ArrLichChieu, (cumRap) =>
+    _.pick(cumRap, ["maHeThongRap", "tenHeThongRap", "logo"])
+  );
+  console.log(arrHeThongRap);
+
+  let renderLogo = () => {
+    return (
+      <div className="grid grid-cols-3">
+        {arrHeThongRap.map((rap, i) => {
+          return <img width={50} src={rap.logo} alt={rap.logo} key={i} />;
+        })}
+      </div>
+    );
+  };
+
   return (
     <footer className="p-6 dark:bg-coolGray-800 dark:text-coolGray-100 bg-gray-300">
       <div className="container grid grid-cols-2 mx-auto gap-x-3 gap-y-8 sm:grid-cols-3 md:grid-cols-4">
         <div className="flex flex-col space-y-4">
-          <h2 className="font-medium">Getting started</h2>
+          <h2 className="font-medium">CGV Việt Nam</h2>
           <div className="flex flex-col space-y-2 text-sm dark:text-coolGray-400">
             <a rel="noopener noreferrer" href="#">
-              Installation
+              Giới Thiệu
             </a>
             <a rel="noopener noreferrer" href="#">
-              Release Notes
+              Tiện Ích Online
             </a>
             <a rel="noopener noreferrer" href="#">
-              Upgrade Guide
+              Thẻ Quà Tặng
             </a>
             <a rel="noopener noreferrer" href="#">
-              Using with Preprocessors
+              Tuyển Dụng
             </a>
             <a rel="noopener noreferrer" href="#">
-              Optimizing for Production
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Browser Support
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              IntelliSense
+              Liên Hệ Quản Cáo CGV
             </a>
           </div>
         </div>
         <div className="flex flex-col space-y-4">
-          <h2 className="font-medium">Core Concepts</h2>
+          <h2 className="font-medium">Điều khoản sử dụng</h2>
           <div className="flex flex-col space-y-2 text-sm dark:text-coolGray-400">
             <a rel="noopener noreferrer" href="#">
-              Utility-First
+              Điều Khoản Chung
             </a>
             <a rel="noopener noreferrer" href="#">
-              Responsive Design
+              Điều Khoản Giao Dịch
             </a>
             <a rel="noopener noreferrer" href="#">
-              Hover, Focus, &amp; Other States
+              Chính Sách Thanh Toán
             </a>
             <a rel="noopener noreferrer" href="#">
-              Dark Mode
+              Chính Sách Bảo Mật
             </a>
             <a rel="noopener noreferrer" href="#">
-              Adding Base Styles
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Extracting Components
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Adding New Utilities
+              Câu Hỏi Thường Gặp
             </a>
           </div>
         </div>
         <div className="flex flex-col space-y-4">
-          <h2 className="font-medium">Customization</h2>
+          <h2 className="font-medium">Nhà Tài Trợ</h2>
           <div className="flex flex-col space-y-2 text-sm dark:text-coolGray-400">
-            <a rel="noopener noreferrer" href="#">
-              Configuration
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Theme Configuration
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Breakpoints
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Customizing Colors
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Customizing Spacing
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Configuring Variants
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              Plugins
-            </a>
+            {renderLogo()}
           </div>
         </div>
         <div className="flex flex-col space-y-4">
-          <h2 className="font-medium">Community</h2>
+          <h2 className="font-medium">Chăm Sóc Khách Hàng</h2>
           <div className="flex flex-col space-y-2 text-sm dark:text-coolGray-400">
             <a rel="noopener noreferrer" href="#">
-              GitHub
+              Hotline: 1900 6017
             </a>
             <a rel="noopener noreferrer" href="#">
-              Discord
+              Giờ làm việc: 8:00 - 22:00 (Tất cả các ngày bao gồm cả Lễ Tết)
             </a>
             <a rel="noopener noreferrer" href="#">
-              Twitter
-            </a>
-            <a rel="noopener noreferrer" href="#">
-              YouTube
+              Email hỗ trợ: hoidap@cgv.vn
             </a>
           </div>
         </div>

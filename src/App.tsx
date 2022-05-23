@@ -1,3 +1,4 @@
+import Details from "pages/Details/Details";
 import React from "react";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
 import logo from "./logo.svg";
@@ -12,7 +13,7 @@ import HomeTemplates from "./templates/HomeTemplate/HomeTemplates";
 
 function App() {
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <Switch>
         <HomeTemplates path="/login" component={Login} />
         <HomeTemplates path="/about" component={About} />
@@ -20,6 +21,7 @@ function App() {
         <HomeTemplates path="/home" component={Home} />
         <HomeTemplates path="/contact" component={Contact} />
         <HomeTemplates path="/new" component={New} />
+        <HomeTemplates path="/detail/:id" component={Details} />
 
         <HomeTemplates path="/" component={Home} />
       </Switch>

@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../rootReducer";
-import { getInfoLichChieu } from "./ThongTinLichChieu.thunk";
+import {
+  getInfoChiTietPhim,
+  getInfoLichChieu,
+} from "./ThongTinLichChieu.thunk";
 
 export const useSelectorInfoLichChieu = () =>
   useSelector((state: RootState) => state.infoLichChieuReducer);
@@ -16,4 +19,15 @@ export const useInfoLichChieu = () => {
     }
   }, []);
   return { ArrLichChieu };
+};
+
+export const useInfoChiTietPhim = (id:string | undefined) => {
+  const dispatch = useDispatch<any>();
+  const { ArrChiTietPhim } = useSelectorInfoLichChieu();
+  useEffect(() => {
+    if (!ArrChiTietPhim) {
+      dispatch(getInfoChiTietPhim(id));
+    }
+  }, []);
+  return { ArrChiTietPhim };
 };

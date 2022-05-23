@@ -14,3 +14,16 @@ export const getInfoLichChieu = createAsyncThunk(
     }
   }
 );
+
+export const getInfoChiTietPhim = createAsyncThunk(
+  "ThongTinLichChieu/getInfoChiTietPhim",
+  async (id: string | undefined, { dispatch }) => {
+    try {
+      const result = await quanLyRapService.LayThongTinLichChieuPhim(id);
+      dispatch(infoLichChieuAction.setChiTietPhim(result.data.content));
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
