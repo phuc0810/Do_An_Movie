@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../rootReducer";
+import { infoLichChieuAction } from "./ThongTinLichChieu.reducer";
 import {
   getInfoChiTietPhim,
   getInfoLichChieu,
@@ -21,13 +22,16 @@ export const useInfoLichChieu = () => {
   return { ArrLichChieu };
 };
 
-export const useInfoChiTietPhim = (id:string | undefined) => {
+export const useInfoChiTietPhim = (id = "") => {
   const dispatch = useDispatch<any>();
   const { ArrChiTietPhim } = useSelectorInfoLichChieu();
   useEffect(() => {
     if (!ArrChiTietPhim) {
       dispatch(getInfoChiTietPhim(id));
     }
+    return () => {
+      dispatch(infoLichChieuAction.setChiTietPhim(undefined));
+    };
   }, []);
   return { ArrChiTietPhim };
 };

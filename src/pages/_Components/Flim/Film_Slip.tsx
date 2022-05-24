@@ -27,10 +27,10 @@ export default function Film_Slip(props: Props) {
             src="http://picsum.photos/200"
             alt="Avatar"
             style={{ width: "100%", height: "100%" }}
-            // onError={(e) => {
-            //   e.target.onerror = null;
-            //   e.target.src = "https://picsum.photos/300/300";
-            // }}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "https://picsum.photos/300/300";
+            }}
           />
         </div>
         <div
@@ -53,10 +53,10 @@ export default function Film_Slip(props: Props) {
               src="http://picsum.photos/200"
               alt="Avatar"
               style={{ width: 300, height: 400 }}
-              // onError={(e) => {
-              //   e.target.onerror = null;
-              //   e.target.src = "https://picsum.photos/300/300";
-              // }}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = "https://picsum.photos/300/300";
+              }}
             />
           </div>
           <div

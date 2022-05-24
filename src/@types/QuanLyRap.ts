@@ -32,7 +32,7 @@ export interface lstLichChieuTheoPhim {
 export interface ArrChiTietPhim {
   biDanh: string;
   dangChieu: boolean;
-  danhGia: number;
+  danhGia: number | undefined;
   heThongRapChieu: heThongRapChieu[];
   hinhAnh: string;
   hot: true;

@@ -3,10 +3,13 @@ import { ArrChiTietPhim, ArrLichChieu } from "@types";
 
 interface typeInitialState {
   ArrLichChieu?: ArrLichChieu[];
-  ArrChiTietPhim?: ArrChiTietPhim[];
+  ArrChiTietPhim?: ArrChiTietPhim;
 }
 
-const initialState: typeInitialState = {};
+const initialState: typeInitialState = {
+};
+
+export type PayloadChiTietPhim = PayloadAction<ArrChiTietPhim | undefined>
 
 export const { reducer: infoLichChieuReducer, actions: infoLichChieuAction } =
   createSlice({
@@ -16,7 +19,9 @@ export const { reducer: infoLichChieuReducer, actions: infoLichChieuAction } =
       setDSLichChieu: (state, action: PayloadAction<ArrLichChieu[]>) => {
         state.ArrLichChieu = action.payload;
       },
-      setChiTietPhim: (state, action: PayloadAction<ArrChiTietPhim[]>) => {
+
+      // nó chạy vào đây nó sẽ lại chi tiết phim về undefined
+      setChiTietPhim: (state, action: PayloadChiTietPhim) => {
         state.ArrChiTietPhim = action.payload;
       },
     },
