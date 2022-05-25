@@ -8,24 +8,16 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { infoLichChieuAction } from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.reducer";
 
-type Props = {
-  propsRoute: RouteComponentProps<
-    {
-      [x: string]: string | undefined;
-    },
-    StaticContext,
-    unknown
-  >;
-};
-
-// xài cái  useparam vs usehistory nó tiện hơn nhiều
-// rồi nẫy h cái máu chốt nằm ở đâu anh ???
-//
+type Props = {};
 
 const { TabPane } = Tabs;
 
 type useState = {
   tabPosition: any;
+};
+
+const onChange = (key: string) => {
+  console.log(key);
 };
 
 // render
@@ -96,27 +88,40 @@ export default function Details(props: Props) {
           </div>
         </div>
 
-        <div className="mt-20 container">
-          <div className="my-8 bg-white">
-            <Tabs tabPosition={tabPosition}>
-              {ArrChiTietPhim?.heThongRapChieu.map((rap, i) => {
-                return (
-                  <TabPane
-                    tab={
-                      <div>
-                        <img width={50} src={rap.logo} alt={rap.logo} />
+        <Tabs defaultActiveKey="1" centered>
+          <TabPane tab="Lịch Chiếu" key="1">
+            <div
+              className="mt-20 ml-52 w2/3 px-5 py-5 container"
+              style={{ width: "70%", height: "auto" }}
+            >
+              <div className=" bg-white">
+                <Tabs tabPosition={tabPosition}>
+                  {ArrChiTietPhim?.heThongRapChieu.map((rap, i) => {
+                    return (
+                      <TabPane
+                        tab={
+                          <div>
+                            <img width={50} src={rap.logo} alt={rap.logo} />
+                            {rap.tenHeThongRap}
+                          </div>
+                        }
+                        key={i}
+                      >
                         {rap.tenHeThongRap}
-                      </div>
-                    }
-                    key={i}
-                  >
-                    {rap.tenHeThongRap}
-                  </TabPane>
-                );
-              })}
-            </Tabs>
-          </div>
-        </div>
+                      </TabPane>
+                    );
+                  })}
+                </Tabs>
+              </div>
+            </div>
+          </TabPane>
+          <TabPane tab="Thông Tin" key="2">
+            Content of Tab Pane 2
+          </TabPane>
+          <TabPane tab="Đánh Giá" key="3">
+            Content of Tab Pane 3
+          </TabPane>
+        </Tabs>
       </div>
     </div>
   );
