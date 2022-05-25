@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tabs, Radio, Space } from "antd";
 import type { RadioChangeEvent } from "antd";
 import { useInfoChiTietPhim } from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.selector";
-import { RouteComponentProps, useParams } from "react-router-dom";
+import { NavLink, RouteComponentProps, useParams } from "react-router-dom";
 import { StaticContext } from "react-router";
 import moment from "moment";
 import { useDispatch } from "react-redux";
@@ -38,6 +38,7 @@ export default function Details(props: Props) {
   let { id } = useParams<{ id: string }>();
   // call api
   let { ArrChiTietPhim } = useInfoChiTietPhim(id);
+  console.log(ArrChiTietPhim);
 
   // useEffect(() => {
   //   return () => {
@@ -88,40 +89,87 @@ export default function Details(props: Props) {
           </div>
         </div>
 
-        <Tabs defaultActiveKey="1" centered>
-          <TabPane tab="Lịch Chiếu" key="1">
-            <div
-              className="mt-20 ml-52 w2/3 px-5 py-5 container"
-              style={{ width: "70%", height: "auto" }}
-            >
-              <div className=" bg-white">
+        <div
+          className="mt-10 mb-10 ml-52 w2/3 px-5 py-5 bg-white container"
+          style={{ width: "70%", height: "auto" }}
+        >
+          <Tabs defaultActiveKey="1" centered>
+            <TabPane tab="Lịch Chiếu" key="1">
+              <div>
                 <Tabs tabPosition={tabPosition}>
-                  {ArrChiTietPhim?.heThongRapChieu.map((rap, i) => {
+                  {ArrChiTietPhim?.heThongRapChieu.map((htr, i) => {
                     return (
                       <TabPane
                         tab={
-                          <div>
-                            <img width={50} src={rap.logo} alt={rap.logo} />
-                            {rap.tenHeThongRap}
+                          <div className="flex flex-row items-center justify-center">
+                            <img
+                              className="rounded-full mr-2"
+                              width={50}
+                              src={htr.logo}
+                              alt={htr.logo}
+                            />
+                            {htr.tenHeThongRap}
                           </div>
                         }
                         key={i}
                       >
-                        {rap.tenHeThongRap}
+                        {htr.cumRapChieu.map((cumRap, i) => {
+                          return (
+                            <div className="mt-5" key={i}>
+                              <div className="flex flex-row">
+                                <img
+                                  width={50}
+                                  height={50}
+                                  src={cumRap.hinhAnh}
+                                  alt={cumRap.hinhAnh}
+                                />
+                                <div className="ml-2">
+                                  <p
+                                    style={{
+                                      fontSize: 20,
+                                      fontWeight: "bold",
+                                      lineHeight: 1,
+                                    }}
+                                  >
+                                    {cumRap.tenCumRap}
+                                  </p>
+                                  <p className="mt-0 text-gray-400">
+                                    {cumRap.diaChi}
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="thong-tin-lich-chieu grid grid-cols-4 mt-4">
+                                {cumRap.lichChieuPhim.slice(0,12).map((lichChieu, i) => {
+                                  return (
+                                    <NavLink
+                                      to="/"
+                                      className="col-span-1 text-green-800 font-bold"
+                                      key={i}
+                                    >
+                                      {moment(
+                                        lichChieu.ngayChieuGioChieu
+                                      ).format("hh:mm A")}
+                                    </NavLink>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
                       </TabPane>
                     );
                   })}
                 </Tabs>
               </div>
-            </div>
-          </TabPane>
-          <TabPane tab="Thông Tin" key="2">
-            Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="Đánh Giá" key="3">
-            Content of Tab Pane 3
-          </TabPane>
-        </Tabs>
+            </TabPane>
+            <TabPane tab="Thông Tin" key="2">
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab="Đánh Giá" key="3">
+              Content of Tab Pane 3
+            </TabPane>
+          </Tabs>
+        </div>
       </div>
     </div>
   );

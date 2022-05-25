@@ -1,9 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 export type Props = {};
 
 export default function Header(props: Props) {
+  let history = useHistory();
+
   return (
     <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100 bg-zinc-600/40 fixed w-full z-10 ">
       <div className="container flex justify-between h-16 mx-auto">
@@ -27,7 +29,7 @@ export default function Header(props: Props) {
               to="/home"
               className=" flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 hover:text-yellow-500 border-none"
               activeClassName="text-yellow-500"
-           >
+            >
               Home
             </NavLink>
           </li>
@@ -53,7 +55,14 @@ export default function Header(props: Props) {
           </li>
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button className="self-center px-8 py-3 rounded">Sign in</button>
+          <button
+            className="self-center px-8 py-3 rounded"
+            onClick={() => {
+              history.push("/login");
+            }}
+          >
+            Sign in
+          </button>
           <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">
             Sign up
           </button>

@@ -1,6 +1,9 @@
+import Checkout from "pages/Checkout/Checkout";
 import Details from "pages/Details/Details";
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import CheckoutTemplate from "templates/CheckoutTemplate/CheckoutTemplate";
+import UserTemplate from "templates/UserTemplate/UserTemplate";
 import logo from "./logo.svg";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
@@ -11,17 +14,27 @@ import Register from "./pages/Register/Register";
 import HomeTemplates from "./templates/HomeTemplate/HomeTemplates";
 // import {} from 'react-router-dom'
 
+const CheckoutTemplateLazy = lazy(
+  () => import("./templates/CheckoutTemplate/CheckoutTemplate")
+);
+
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <HomeTemplates path="/login" component={Login} />
         <HomeTemplates path="/about" component={About} />
         <HomeTemplates path="/register" component={Register} />
         <HomeTemplates path="/home" component={Home} />
         <HomeTemplates path="/contact" component={Contact} />
         <HomeTemplates path="/new" component={New} />
         <HomeTemplates path="/detail/:id" component={Details} />
+        <HomeTemplates path="/checkout/:id" component={Checkout} />
+        
+        {/* <Suspense fallback={<h1>LOADING...</h1>}>
+          <CheckoutTemplateLazy path="/checkout/:id" component={Checkout} />
+        </Suspense> */}
+
+        <UserTemplate path="/login" component={Login} />
 
         <HomeTemplates path="/" component={Home} />
       </Switch>
