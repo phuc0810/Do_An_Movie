@@ -18,6 +18,9 @@ export const useInfoLichChieu = () => {
     if (!ArrLichChieu) {
       dispatch(getInfoLichChieu());
     }
+    return () => {
+      dispatch(getInfoLichChieu());
+    };
   }, []);
   return { ArrLichChieu };
 };

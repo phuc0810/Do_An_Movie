@@ -14,12 +14,11 @@ export default function CheckoutTemplate(props: Props) {
       path={props.path}
       render={(propsRoute) => {
         if (!localStorage.getItem(USER_LOGIN)) {
-          return <Redirect to="/login" />;
+          return <Redirect to="/Login" />;
         }
         return (
           <div>
             <props.component {...propsRoute} />
-            <hr className="mt-5" />
           </div>
         );
       }}

@@ -28,13 +28,12 @@ function App() {
         <HomeTemplates path="/contact" component={Contact} />
         <HomeTemplates path="/new" component={New} />
         <HomeTemplates path="/detail/:id" component={Details} />
-        <HomeTemplates path="/checkout/:id" component={Checkout} />
-        
+
+        <CheckoutTemplate path="/checkout/:id" component={Checkout} />
+        <UserTemplate path="/login" component={Login} />
         {/* <Suspense fallback={<h1>LOADING...</h1>}>
           <CheckoutTemplateLazy path="/checkout/:id" component={Checkout} />
         </Suspense> */}
-
-        <UserTemplate path="/login" component={Login} />
 
         <HomeTemplates path="/" component={Home} />
       </Switch>

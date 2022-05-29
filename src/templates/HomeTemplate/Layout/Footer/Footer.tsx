@@ -1,12 +1,15 @@
 import React from "react";
-import { useSelectorInfoLichChieu } from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.selector";
+import {
+  useInfoLichChieu,
+  useSelectorInfoLichChieu,
+} from "redux/store/QuanLyRap/ThongTinLichChieu/ThongTinLichChieu.selector";
 import _ from "lodash";
 
 type Props = {};
 
 export default function Footer(props: Props) {
-  let { ArrLichChieu } = useSelectorInfoLichChieu();
-
+  let { ArrLichChieu } = useInfoLichChieu();
+  console.log(ArrLichChieu);
   let arrHeThongRap = _.map(ArrLichChieu, (cumRap) =>
     _.pick(cumRap, ["maHeThongRap", "tenHeThongRap", "logo"])
   );

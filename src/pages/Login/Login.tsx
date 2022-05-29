@@ -1,10 +1,36 @@
+import { useFormik } from "formik";
+import { values } from "lodash";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import {
+  useDangNhap,
+  useSelectorQuanLyNguoiDung,
+} from "redux/store/QuanLyNguoiDung";
+import { getDangNhap } from "redux/store/QuanLyNguoiDung/QuanLyNguoiDung.thunk";
 
 type Props = {};
 
 export default function Login({}: Props) {
+  let history = useHistory();
+  const dispatch = useDispatch<any>();
+  const formik = useFormik({
+    initialValues: {
+      taiKhoan: "",
+      matKhau: "",
+    },
+    onSubmit: (values: { taiKhoan: string; matKhau: string }) => {
+      console.log(values);
+      dispatch(getDangNhap(values));
+      history.goBack();
+    },
+  });
+
   return (
-    <div className="lg:w-1/2 xl:max-w-screen-sm">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="lg:w-1/2 xl:max-w-screen-sm"
+    >
       <div className="py-12 bg-indigo-100 lg:bg-white flex justify-center lg:justify-start lg:px-12">
         <div className="cursor-pointer flex items-center">
           <div>
@@ -48,58 +74,64 @@ export default function Login({}: Props) {
           className="text-center text-4xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl
   xl:text-bold"
         >
-          Log in
+          Đăng Nhập
         </h2>
         <div className="mt-12">
-          <form>
+          <div>
             <div>
               <div className="text-sm font-bold text-gray-700 tracking-wide">
-                Email Address
+                Tài Khoản
               </div>
               <input
+                name="taiKhoan"
+                onChange={formik.handleChange}
                 className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
-                type={"email"}
                 placeholder="mike@gmail.com"
+                value={formik.values.taiKhoan}
               />
             </div>
             <div className="mt-8">
               <div className="flex justify-between items-center">
                 <div className="text-sm font-bold text-gray-700 tracking-wide">
-                  Password
+                  Mật Khẩu
                 </div>
                 <div>
                   <a
                     className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
                       cursor-pointer"
                   >
-                    Forgot Password?
+                    Quên Mật Khẩu?
                   </a>
                 </div>
               </div>
               <input
+                name="matKhau"
+                onChange={formik.handleChange}
                 className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                 type={"password"}
-                placeholder="Enter your password"
+                placeholder="Nhập mật khẩu"
+                value={formik.values.matKhau}
               />
             </div>
             <div className="mt-10">
               <button
+                type="submit"
                 className="bg-indigo-500 text-gray-100 p-4 w-full rounded-full tracking-wide
               font-semibold font-display focus:outline-none focus:shadow-outline hover:bg-indigo-600
               shadow-lg"
               >
-                Log In
+                Đăng Nhập
               </button>
             </div>
-          </form>
+          </div>
           <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
-            Don't have an account ?{" "}
+            Bạn Chưa Có Tài Khoản ?{" "}
             <a className="cursor-pointer text-indigo-600 hover:text-indigo-800">
-              Sign up
+              Đăng Ký
             </a>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

@@ -26,7 +26,6 @@ export default function Details(props: Props) {
   const [state, setState] = useState<useState>({
     tabPosition: "left",
   });
-  const dispatch = useDispatch();
 
   const changeTabPosition = (e: RadioChangeEvent) => {
     setState({ tabPosition: e.target.value });
@@ -34,6 +33,8 @@ export default function Details(props: Props) {
 
   const { tabPosition } = state;
 
+  // dispatch
+  const dispatch = useDispatch();
   // lay id param
   let { id } = useParams<{ id: string }>();
   // call api
@@ -139,19 +140,21 @@ export default function Details(props: Props) {
                                 </div>
                               </div>
                               <div className="thong-tin-lich-chieu grid grid-cols-4 mt-4">
-                                {cumRap.lichChieuPhim.slice(0,12).map((lichChieu, i) => {
-                                  return (
-                                    <NavLink
-                                      to="/"
-                                      className="col-span-1 text-green-800 font-bold"
-                                      key={i}
-                                    >
-                                      {moment(
-                                        lichChieu.ngayChieuGioChieu
-                                      ).format("hh:mm A")}
-                                    </NavLink>
-                                  );
-                                })}
+                                {cumRap.lichChieuPhim
+                                  .slice(0, 12)
+                                  .map((lichChieu, i) => {
+                                    return (
+                                      <NavLink
+                                        to={`/checkout/${lichChieu.maLichChieu}`}
+                                        className="col-span-1 text-green-800 font-bold"
+                                        key={i}
+                                      >
+                                        {moment(
+                                          lichChieu.ngayChieuGioChieu
+                                        ).format("hh:mm A")}
+                                      </NavLink>
+                                    );
+                                  })}
                               </div>
                             </div>
                           );
