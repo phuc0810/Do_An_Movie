@@ -1,6 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { quanLyDatVeService } from "Service/QuanLyDatVe";
+import { thongTinDatVe } from "@types";
+import { quanLyDatVeService } from "Service/QuanLyDatVeService";
 import { quanLyDatVeAction } from "./QuanLyDatVe.reducer";
+
+// noi de goi api
 
 export const getChiTietPhongVe = createAsyncThunk(
   "QuanLyDatVe/getChiTietPhongVe",
@@ -8,6 +11,19 @@ export const getChiTietPhongVe = createAsyncThunk(
     try {
       const result = await quanLyDatVeService.layChiTietPhongVe(maLichChieu);
       dispatch(quanLyDatVeAction.setChiTietPhongVe(result.data.content));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const datVe = createAsyncThunk(
+  "QuanLyDatVe/datVe",
+  async (thongTinDatVe: thongTinDatVe, { dispatch }) => {
+    try {
+      const result = await quanLyDatVeService.datVe(thongTinDatVe);
+      dispatch(quanLyDatVeAction.setThongTinDatVe(result.data.content));
+      console.log(result);
     } catch (error) {
       console.log(error);
     }

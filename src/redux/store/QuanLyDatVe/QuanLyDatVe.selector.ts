@@ -5,6 +5,8 @@ import { RootState } from "../rootReducer";
 import { quanLyDatVeAction } from "./QuanLyDatVe.reducer";
 import { getChiTietPhongVe } from "./QuanLyDatVe.thunk";
 
+// noi day call api de lay du lieu roi gui len redux thunk
+
 export const useSelectorQuanLyDatVe = () =>
   useSelector((state: RootState) => state.quanLyDatVeReducer);
 

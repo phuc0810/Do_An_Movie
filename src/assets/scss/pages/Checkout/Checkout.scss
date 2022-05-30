@@ -19,7 +19,7 @@
   color: #fff;
 }
 .gheDaDat {
-  background-color: red;
+  background-color: red !important;
   cursor: no-drop;
 }
 .gheDangDat {
@@ -27,4 +27,9 @@
 }
 .gheVip {
   background-color: orange;
+}
+.nguoiDungDatGhe {
+  background-color: rgb(212, 23, 114) !important;
+  font-size: 20px;
+  font-weight: bold;
 }

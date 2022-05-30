@@ -21,7 +21,7 @@ export const getInfoChiTietPhim = createAsyncThunk(
     try {
       const result = await quanLyRapService.LayThongTinLichChieuPhim(id);
       dispatch(infoLichChieuAction.setChiTietPhim(result.data.content));
-      // console.log(result);
+      console.log(result);
     } catch (error) {
       console.log(error);
     }

@@ -8,11 +8,23 @@ import { quanLyNguoiDungAction } from "./QuanLyNguoiDung.reducer";
 
 export const getDangNhap = createAsyncThunk(
   "QuanLyNguoiDung/getDangNhap",
-  async (values:{ taiKhoan: string; matKhau: string }, { dispatch }) => {
+  async (values: { taiKhoan: string; matKhau: string }, { dispatch }) => {
     try {
       const result = await quanLyNguoiDungService.DangNhap(values);
       console.log(result);
       dispatch(quanLyNguoiDungAction.setThongTinDangNhap(result.data.content));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+export const layThongTinNguoiDung = createAsyncThunk(
+  "QuanLyNguoiDung,layThongTinNguoiDung",
+  async (params, { dispatch }) => {
+    try {
+      const result = await quanLyNguoiDungService.layThongTinNguoiDung();
+      dispatch(quanLyNguoiDungAction.setThongTinNguoiDung(result.data.content));
+      console.log(result);
     } catch (error) {
       console.log(error);
     }

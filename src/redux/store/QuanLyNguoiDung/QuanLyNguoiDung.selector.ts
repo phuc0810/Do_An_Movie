@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../rootReducer";
-import { getDangNhap } from "./QuanLyNguoiDung.thunk";
+import { quanLyNguoiDungAction } from "./QuanLyNguoiDung.reducer";
+import { getDangNhap, layThongTinNguoiDung } from "./QuanLyNguoiDung.thunk";
 
 export const useSelectorQuanLyNguoiDung = () =>
   useSelector((state: RootState) => state.quanLyNguoiDungReducer);
 
-export const useDangNhap = (values:any) => {
+export const useDangNhap = (values: any) => {
   const dispatch = useDispatch<any>();
   const { thongTinDangNhap } = useSelectorQuanLyNguoiDung();
   useEffect(() => {
@@ -18,4 +19,15 @@ export const useDangNhap = (values:any) => {
   }, []);
 
   return { thongTinDangNhap };
+};
+
+export const useDispatchThongTinNguoiDung = () => {
+  const dispatch = useDispatch<any>();
+  const { thongTinNguoiDung } = useSelectorQuanLyNguoiDung();
+  useEffect(() => {
+    if (!thongTinNguoiDung) {
+      dispatch(layThongTinNguoiDung());
+    }
+  }, []);
+  return { thongTinNguoiDung };
 };

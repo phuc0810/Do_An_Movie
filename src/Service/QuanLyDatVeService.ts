@@ -1,3 +1,4 @@
+import { thongTinDatVe } from "@types";
 import { http } from "util/settings/config";
 
 export class QuanLyDatVe {
@@ -5,6 +6,18 @@ export class QuanLyDatVe {
     return http.get(
       `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`
     );
+  };
+  datVe = (thongTinDatVe: thongTinDatVe) => {
+    /**{
+    "maLichChieu": 0,
+    "danhSachVe": [
+      {
+        "maGhe": 0,
+        "giaVe": 0
+      }
+    ]
+  } */
+    return http.post("/api/QuanLyDatVe/DatVe", thongTinDatVe);
   };
 }
 

@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ACCESSTOKEN, ThongTinDangNhap, USER_LOGIN } from "@types";
+import {
+  ACCESSTOKEN,
+  ThongTinDangNhap,
+  ThongTinNguoiDung,
+  USER_LOGIN,
+} from "@types";
 
 let user = {};
 
@@ -9,6 +14,7 @@ if (localStorage.getItem(USER_LOGIN)) {
 
 interface typeInitialState {
   thongTinDangNhap?: ThongTinDangNhap;
+  thongTinNguoiDung?: ThongTinNguoiDung;
 }
 
 const initialState: typeInitialState = {
@@ -26,6 +32,10 @@ export const {
       state.thongTinDangNhap = action.payload;
       localStorage.setItem(USER_LOGIN, JSON.stringify(state.thongTinDangNhap));
       localStorage.setItem(ACCESSTOKEN, state.thongTinDangNhap.accessToken);
+    },
+    setThongTinNguoiDung: (state, action: PayloadAction<ThongTinNguoiDung>) => {
+      state.thongTinNguoiDung = action.payload;
+      console.log("state.thongTinNguoiDung", state.thongTinNguoiDung);
     },
   },
 });
