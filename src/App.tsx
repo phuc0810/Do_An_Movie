@@ -1,8 +1,13 @@
+import Dashboard from "pages/Admin/Dashboard/Dashboard";
+import Flims from "pages/Admin/Flims/Flims";
+import Showtime from "pages/Admin/Showtime/Showtime";
+import User from "pages/Admin/User/User";
 import Checkout from "pages/Checkout/Checkout";
 import Details from "pages/Details/Details";
 import Loading from "pages/_Components/Loading/Loading";
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
+import AdminTemplate from "templates/AdminTemplate/AdminTemplate";
 import CheckoutTemplate from "templates/CheckoutTemplate/CheckoutTemplate";
 import UserTemplate from "templates/UserTemplate/UserTemplate";
 import logo from "./logo.svg";
@@ -36,6 +41,11 @@ function App() {
         {/* <Suspense fallback={<h1>LOADING...</h1>}>
           <CheckoutTemplateLazy path="/checkout/:id" component={Checkout} />
         </Suspense> */}
+
+        <AdminTemplate path="/admin" component={Dashboard} />
+        <AdminTemplate path="/admin/films" component={Flims} />
+        <AdminTemplate path="/admin/users" component={User} />
+        <AdminTemplate path="/admin/showtimes" component={Showtime} />
 
         <HomeTemplates path="/" component={Home} />
       </Switch>
