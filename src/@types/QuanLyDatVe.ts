@@ -34,6 +34,6 @@ export interface ghe {
   taiKhoanNguoiDat: null;
 }
 export interface thongTinDatVe {
-  maLichChieu: number;
+  maLichChieu: number|string;
   danhSachVe: ghe[];
 }

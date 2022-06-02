@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./assets/scss/Components/Loading/Loading.scss";
 @import "./assets/scss/pages/Details/detail.scss";
 @import "./assets/scss/themes/variable";
 @import "./assets/scss/pages/Home/home.scss";

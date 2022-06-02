@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { LoadingReducer } from "./Loading/Loading.reducer";
 import { quanLyDatVeReducer } from "./QuanLyDatVe/QuanLyDatVe.reducer";
 import { quanLyNguoiDungReducer } from "./QuanLyNguoiDung/QuanLyNguoiDung.reducer";
 import { bannerReducer } from "./QuanLyPhim/Banner/banner.reducer";
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
   infoLichChieuReducer,
   quanLyNguoiDungReducer,
   quanLyDatVeReducer,
+  LoadingReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

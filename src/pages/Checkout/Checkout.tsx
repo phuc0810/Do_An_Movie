@@ -30,7 +30,8 @@ function Checkout(props: Props) {
   // truyen id len api reduxthunk
   let { chiTietPhongVe } = useChiTietPhongVe(id);
   // lay du lieu danhSachGheDangDat
-  let { danhSachGheDangDat, thongTinDatVe } = useSelectorQuanLyDatVe();
+  let { danhSachGheDangDat, thongTinDatVe, danhSachGheKhachDat } =
+    useSelectorQuanLyDatVe();
 
   // render danh sach ghe
   let renderDSGhe = () => {
@@ -50,11 +51,20 @@ function Checkout(props: Props) {
       if (thongTinDangNhap?.taiKhoan === ghe.taiKhoanNguoiDat) {
         nguoiDungDatGhe = "nguoiDungDatGhe";
       }
+      // thay class khach dang dat
+      let khachDangDat = "";
+      let indexDSGheKhachDat = danhSachGheKhachDat.findIndex(
+        (gheKD) => gheKD.maGhe === ghe.maGhe
+      );
+      if (indexDSGheKhachDat != -1) {
+        khachDangDat = "khachDangDat";
+      }
+
       return (
         <Fragment key={i}>
           <button
-            disabled={ghe.daDat}
-            className={`ghe ${gheVip} ${gheDaDat} ${gheDangDat} ${nguoiDungDatGhe}`}
+            disabled={ghe.daDat || khachDangDat != ""}
+            className={`ghe ${gheVip} ${gheDaDat} ${gheDangDat} ${nguoiDungDatGhe} ${khachDangDat}`}
             key={i}
             onClick={() => {
               dispatch(quanLyDatVeAction.setDSGheDat(ghe));
@@ -164,6 +174,10 @@ function Checkout(props: Props) {
                   <td>
                     <button className="ghe gheDaDat">00</button>
                   </td>
+                  <th>Khach Dang Dat</th>
+                  <td>
+                    <button className="ghe khachDangDat">00</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -177,14 +191,21 @@ function Checkout(props: Props) {
 //tab antd
 const { TabPane } = Tabs;
 
-const onChange = (key: string) => {
-  console.log(key);
-};
+// giao dien mac dinh
 
 export default function (props: Props) {
+  let dispatch = useDispatch();
+  let { activeKey } = useSelectorQuanLyDatVe();
   return (
     <div className="p-3">
-      <Tabs defaultActiveKey="1" onChange={onChange}>
+      <Tabs
+        defaultActiveKey="1"
+        activeKey={activeKey.toString()}
+        onChange={(key) => {
+          dispatch(quanLyDatVeAction.changActiveKey(parseInt(key)));
+          console.log(key);
+        }}
+      >
         <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
           <Checkout />
         </TabPane>
@@ -201,7 +222,7 @@ export default function (props: Props) {
 function KetQuaDatVe(props: Props) {
   let { thongTinNguoiDung } = useDispatchThongTinNguoiDung();
 
-  // console.log("thongTinNguoiDung", thongTinNguoiDung);
+  console.log("thongTinNguoiDung", thongTinNguoiDung);
 
   let renderTicketItem = () => {
     return thongTinNguoiDung?.thongTinDatVe.map((ve, i) => {
@@ -222,8 +243,17 @@ function KetQuaDatVe(props: Props) {
                 {moment(ve.ngayDat).format("DD/MM/YYYY")}
               </p>
               <p className="text-pink-500">
+                {_.first(ve.danhSachGhe)?.tenHeThongRap}
+              </p>
+              <p className="text-pink-500">
                 {_.first(ve.danhSachGhe)?.tenRap} - Ghế{" "}
-                {_.first(ve.danhSachGhe)?.tenGhe}
+                {ve.danhSachGhe.map((ghe, i) => {
+                  return (
+                    <span className="ml-1" key={i}>
+                      [{ghe.tenGhe}]
+                    </span>
+                  );
+                })}
               </p>
             </div>
           </div>

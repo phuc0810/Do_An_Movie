@@ -1,8 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThongTinDangNhap } from "@types";
+import { useEffect } from "react";
 import { quanLyNguoiDungService } from "Service/QuanLyNguoiDungService";
 import { quanLyPhimService } from "Service/QuanLyPhimService";
 import { http } from "util/settings/config";
+import { LoadingAction } from "../Loading/Loading.reducer";
 import { quanLyNguoiDungAction } from "./QuanLyNguoiDung.reducer";
 // import { bannerAction } from "./banner.reducer";
 
@@ -19,12 +21,21 @@ export const getDangNhap = createAsyncThunk(
   }
 );
 export const layThongTinNguoiDung = createAsyncThunk(
-  "QuanLyNguoiDung,layThongTinNguoiDung",
+  "QuanLyNguoiDung/layThongTinNguoiDung",
   async (params, { dispatch }) => {
     try {
-      const result = await quanLyNguoiDungService.layThongTinNguoiDung();
-      dispatch(quanLyNguoiDungAction.setThongTinNguoiDung(result.data.content));
+      let result = await quanLyNguoiDungService.layThongTinNguoiDung();
+      if (result.data.statusCode === 200) {
+        dispatch(
+          quanLyNguoiDungAction.setThongTinNguoiDung(result.data.content)
+        );
+      }
       console.log(result);
+
+      dispatch(LoadingAction.setIsLoading(true));
+
+      // tat loading khi du lieu lay ve xong
+      dispatch(LoadingAction.setIsLoading(false));
     } catch (error) {
       console.log(error);
     }

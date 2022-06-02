@@ -1,10 +1,21 @@
 import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
+import { Select } from "antd";
+import { useTranslation } from "react-i18next";
 
 export type Props = {};
 
 export default function Header(props: Props) {
   let history = useHistory();
+
+  const { t, i18n } = useTranslation();
+
+  const { Option } = Select;
+
+  const handleChange = (value: string) => {
+    i18n.changeLanguage(value);
+    console.log(value);
+  };
 
   return (
     <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100 bg-zinc-600/40 fixed w-full z-10 ">
@@ -61,7 +72,7 @@ export default function Header(props: Props) {
               history.push("/login");
             }}
           >
-            Sign in
+            {t("signin")}
           </button>
           <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">
             Sign up
@@ -83,6 +94,17 @@ export default function Header(props: Props) {
             />
           </svg>
         </button>
+        <div>
+          <Select
+            defaultValue="en"
+            style={{ width: 120 }}
+            onChange={handleChange}
+          >
+            <Option value="vie">VN</Option>
+            <Option value="chi">chi</Option>
+            <Option value="en">en</Option>
+          </Select>
+        </div>
       </div>
     </header>
   );

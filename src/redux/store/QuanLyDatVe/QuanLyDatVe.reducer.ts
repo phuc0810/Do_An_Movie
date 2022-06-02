@@ -5,6 +5,8 @@ interface typeInitialState {
   chiTietPhongVe?: ChiTietPhongVe;
   danhSachGheDangDat: ghe[];
   thongTinDatVe: thongTinDatVe;
+  activeKey: number;
+  danhSachGheKhachDat: [{ maGhe: number }, { maGhe: number }];
 }
 
 const initialState: typeInitialState = {
@@ -13,6 +15,8 @@ const initialState: typeInitialState = {
     maLichChieu: 0,
     danhSachVe: [],
   },
+  activeKey: 1,
+  danhSachGheKhachDat: [{ maGhe: 53673 }, { maGhe: 53674 }],
 };
 
 export const { reducer: quanLyDatVeReducer, actions: quanLyDatVeAction } =
@@ -27,7 +31,6 @@ export const { reducer: quanLyDatVeReducer, actions: quanLyDatVeAction } =
         state.chiTietPhongVe = action.payload;
       },
       setDSGheDat: (state, action: PayloadAction<ghe>) => {
-        console.log(action.payload);
         let newArrDD = [...state.danhSachGheDangDat];
         let index = newArrDD.findIndex(
           (gheDD) => gheDD.maGhe === action.payload.maGhe
@@ -38,12 +41,18 @@ export const { reducer: quanLyDatVeReducer, actions: quanLyDatVeAction } =
           newArrDD.push(action.payload);
         }
         state.danhSachGheDangDat = newArrDD;
-        console.log("state.danhSachGheDangDat", state.danhSachGheDangDat);
+        
         return state;
       },
-      setThongTinDatVe: (state, action: PayloadAction<thongTinDatVe>) => {
-        state.thongTinDatVe = action.payload;
-        console.log("thongTinDatVeReducer", state.thongTinDatVe);
+      // setThongTinDatVe: (state, action: PayloadAction<thongTinDatVe>) => {
+      //   state.thongTinDatVe = action.payload;
+      //   console.log("thongTinDatVeReducer", state.thongTinDatVe);
+      // },
+      datVeHoanTat: (state, action: PayloadAction) => {
+        state.danhSachGheDangDat = [];
+      },
+      changActiveKey: (state, action: PayloadAction<number>) => {
+        state.activeKey = action.payload;
       },
     },
   });
