@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { arrFilm } from "@types";
+import { arrFilm, ThongTinPhim } from "@types";
 
 interface typeInitialState {
   arrFilm?: arrFilm[];
   sapChieu: boolean;
   dangChieu: boolean;
   arrFlimChange?: arrFilm[];
+  thongTinPhim?: ThongTinPhim;
 }
 
 const initialState: typeInitialState = {
@@ -36,6 +37,12 @@ export const { reducer: dsPhimReducer, actions: dsPhimAction } = createSlice({
         (phim) => phim.dangChieu === true
       );
       // state.arrFlimChange = state.arrDangChieu;
+    },
+    addPhim: (state, action: PayloadAction<any>) => {
+      state.arrFilm?.push(action.payload);
+    },
+    setThongTinPhim: (state, action: PayloadAction<ThongTinPhim>) => {
+      state.thongTinPhim = action.payload;
     },
   },
 });

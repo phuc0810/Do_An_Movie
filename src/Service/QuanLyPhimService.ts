@@ -11,6 +11,9 @@ export class QuanLyPhimService {
   themPhimUploadHinh = (formData: formData) => {
     return http.post("/api/QuanLyPhim/ThemPhimUploadHinh", formData);
   };
+  laythongTinPhim = (maPhim: string) => {
+    return http.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
+  };
 }
 
 export const quanLyPhimService = new QuanLyPhimService();

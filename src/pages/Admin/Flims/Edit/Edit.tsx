@@ -14,11 +14,16 @@ import {
 import { useFormik } from "formik";
 import moment from "moment";
 import { useDispatch } from "react-redux";
-import { postThemPhimUploadHinhAnh } from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.thunk";
+import {
+  getLayThongTinPhim,
+  postThemPhimUploadHinhAnh,
+} from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.thunk";
+import { useParams } from "react-router-dom";
+import { useDispatchlayThongTinPhim } from "redux/store/QuanLyPhim/DanhSachPhim/dsPhim.selector";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
-const AddNew = () => {
+const Edit = () => {
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
@@ -31,17 +36,23 @@ const AddNew = () => {
 
   let dispatch = useDispatch<any>();
 
+  let { id } = useParams<{ id: string }>();
+
+  let { thongTinPhim } = useDispatchlayThongTinPhim(id);
+  console.log(thongTinPhim);
+
   const formilk = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      tenPhim: "",
-      trailer: "",
-      moTa: "",
-      ngayKhoiChieu: "",
-      dangChieu: false,
-      sapChieu: false,
-      hot: false,
-      danhGia: 0,
-      hinhAnh: {},
+      tenPhim: thongTinPhim?.tenPhim,
+      trailer: thongTinPhim?.trailer,
+      moTa: thongTinPhim?.moTa,
+      ngayKhoiChieu: thongTinPhim?.ngayKhoiChieu,
+      dangChieu: thongTinPhim?.dangChieu,
+      sapChieu: thongTinPhim?.sapChieu,
+      hot: thongTinPhim?.hot,
+      danhGia: thongTinPhim?.danhGia,
+      hinhAnh: null,
     },
     onSubmit: (values: any) => {
       console.log(values);
@@ -63,7 +74,7 @@ const AddNew = () => {
   });
 
   let handleChangeDate = (values: any) => {
-    let ngayKhoiChieu = moment(values).format("DD/MM/YYYY");
+    let ngayKhoiChieu = moment(values);
     console.log(ngayKhoiChieu);
     formilk.setFieldValue("ngayKhoiChieu", ngayKhoiChieu);
   };
@@ -103,35 +114,58 @@ const AddNew = () => {
       onSubmitCapture={formilk.handleSubmit}
     >
       <Form.Item label="Tên phim">
-        <Input name="tenPhim" onChange={formilk.handleChange} />
+        <Input
+          name="tenPhim"
+          onChange={formilk.handleChange}
+          value={formilk.values.tenPhim}
+        />
       </Form.Item>
       <Form.Item label="Trailer">
-        <Input name="trailer" onChange={formilk.handleChange} />
+        <Input
+          name="trailer"
+          onChange={formilk.handleChange}
+          value={formilk.values.trailer}
+        />
       </Form.Item>
       <Form.Item label="Mô tả">
-        <Input name="moTa" onChange={formilk.handleChange} />
+        <Input
+          name="moTa"
+          onChange={formilk.handleChange}
+          value={formilk.values.moTa}
+        />
       </Form.Item>
       <Form.Item label="Ngày khởi chiếu">
         <DatePicker
           name="ngayKhoiChieu"
           format={"DD/MM/YYYY"}
           onChange={handleChangeDate}
+          value={moment(formilk.values.ngayKhoiChieu)}
         />
       </Form.Item>
       <Form.Item label="Đang chiếu" valuePropName="checked">
-        <Switch onChange={handleChangeSwitch("dangChieu")} />
+        <Switch
+          onChange={handleChangeSwitch("dangChieu")}
+          checked={formilk.values.dangChieu}
+        />
       </Form.Item>
       <Form.Item label="Sắp chiếu" valuePropName="checked">
-        <Switch onChange={handleChangeSwitch("sapChieu")} />
+        <Switch
+          onChange={handleChangeSwitch("sapChieu")}
+          checked={formilk.values.sapChieu}
+        />
       </Form.Item>
       <Form.Item label="Hot" valuePropName="checked">
-        <Switch onChange={handleChangeSwitch("hot")} />
+        <Switch
+          onChange={handleChangeSwitch("hot")}
+          checked={formilk.values.hot}
+        />
       </Form.Item>
       <Form.Item label="Đánh Giá">
         <InputNumber
           onChange={handleChangeInputNumber("danhGia")}
           max={10}
           min={1}
+          value={formilk.values.danhGia}
         />
       </Form.Item>
       <Form.Item label="Hinh anh">
@@ -140,7 +174,12 @@ const AddNew = () => {
           onChange={handleChangFile}
           accept="image/png, image/jpeg"
         />
-        <img width={200} height={200} src={imgSrc} alt="..." />
+        <img
+          width={200}
+          height={200}
+          src={imgSrc == "" ? thongTinPhim?.hinhAnh : imgSrc}
+          alt="..."
+        />
       </Form.Item>
       <Form.Item label="Tác vụ">
         <button className="bg-blue-400 p-2" type="submit">
@@ -151,4 +190,4 @@ const AddNew = () => {
   );
 };
 
-export default AddNew;
+export default Edit;

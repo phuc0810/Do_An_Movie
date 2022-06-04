@@ -1,7 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { formData } from "@types";
 import { quanLyPhimService } from "Service/QuanLyPhimService";
-import { http } from "util/settings/config";
 import { dsPhimAction } from "./dsPhim.reducer";
 
 export const getDanhSachPhim = createAsyncThunk(
@@ -25,6 +23,19 @@ export const postThemPhimUploadHinhAnh = createAsyncThunk(
       dispatch(dsPhimAction.setDanhSachPhim(result.data.content));
       console.log(result);
       alert("thêm phim thành công");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const getLayThongTinPhim = createAsyncThunk(
+  "DanhSachPhim/getLayThongTinPhim",
+  async (maPhim: string, { dispatch }) => {
+    try {
+      const result = await quanLyPhimService.laythongTinPhim(maPhim);
+      console.log(result);
+      dispatch(dsPhimAction.setThongTinPhim(result.data.content));
     } catch (error) {
       console.log(error);
     }

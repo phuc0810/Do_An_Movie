@@ -97,7 +97,10 @@ export default function Flims({}: Props) {
             <NavLink to="/" className="text-3xl text-white mr-2">
               <DeleteOutlined style={{ color: "red" }} />
             </NavLink>
-            <NavLink to="/" className="text-3xl text-white">
+            <NavLink
+              to={`/admin/flims/edit/${flim.maPhim}`}
+              className="text-3xl text-white"
+            >
               <EditOutlined style={{ color: "blue" }} />
             </NavLink>
           </div>
