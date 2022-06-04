@@ -18,14 +18,14 @@ export interface arrFilm {
   sapChieu: boolean;
 }
 
-export interface index {
-  mang: mang[];
-}
-interface mang {
-  ten: string;
-  sdt: string;
-  mang2: mang2[];
-}
-interface mang2 {
-  
+export interface formData {
+  tenPhim: string;
+  trailer: string;
+  moTa: string;
+  ngayKhoiChieu: string;
+  dangChieu: boolean;
+  sapChieu: boolean;
+  hot: boolean;
+  danhGia: number;
+  hinhAnh: {};
 }

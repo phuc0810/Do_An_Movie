@@ -1,4 +1,5 @@
 import Dashboard from "pages/Admin/Dashboard/Dashboard";
+import AddNew from "pages/Admin/Flims/AddNew/AddNew";
 import Flims from "pages/Admin/Flims/Flims";
 import Showtime from "pages/Admin/Showtime/Showtime";
 import User from "pages/Admin/User/User";
@@ -41,11 +42,13 @@ function App() {
         {/* <Suspense fallback={<h1>LOADING...</h1>}>
           <CheckoutTemplateLazy path="/checkout/:id" component={Checkout} />
         </Suspense> */}
-
-        <AdminTemplate path="/admin" component={Dashboard} />
+        
+        <AdminTemplate path="/admin/films/addnew" component={AddNew} />
         <AdminTemplate path="/admin/films" component={Flims} />
         <AdminTemplate path="/admin/users" component={User} />
         <AdminTemplate path="/admin/showtimes" component={Showtime} />
+
+        <AdminTemplate path="/admin" component={Dashboard} />
 
         <HomeTemplates path="/" component={Home} />
       </Switch>

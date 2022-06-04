@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "redux/store/rootReducer";
-import { getDanhSachPhim } from "./dsPhim.thunk";
+import { getDanhSachPhim, postThemPhimUploadHinhAnh } from "./dsPhim.thunk";
 
 export const useSelectorDanhSachPhim = () =>
   useSelector((state: RootState) => state.dsPhimReducer);
@@ -19,3 +19,4 @@ export const useDSPhim = () => {
   }, []);
   return { arrFilm };
 };
+
