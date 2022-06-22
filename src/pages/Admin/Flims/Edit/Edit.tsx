@@ -63,7 +63,9 @@ const Edit = () => {
         if (key !== "hinhAnh") {
           formData.append(key, key[values]);
         } else {
-          formData.append("File", values.hinhAnh, values.hinhAnh.name);
+          if (values.hinhAnh !== null) {
+            formData.append("File", values.hinhAnh, values.hinhAnh.name);
+          }
         }
       }
       console.log("fromData", formData.get("trailer"));
@@ -91,15 +93,16 @@ const Edit = () => {
     };
   };
 
-  let handleChangFile = (e: any) => {
+  let handleChangFile = async (e: any) => {
     let file = e.target.files[0];
+
+    await formilk.setFieldValue("hinhAnh", file);
     // tao doi tuong de doc file
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (e) => {
       setImgSrc(e.target?.result);
     };
-    formilk.setFieldValue("hinhAnh", file);
     // console.log(file);
   };
 

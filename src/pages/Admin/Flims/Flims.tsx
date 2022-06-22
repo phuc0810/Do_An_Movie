@@ -137,7 +137,13 @@ export default function Flims({}: Props) {
         onSearch={onSearch}
         className="mb-5"
       />
-      <Table columns={columns} dataSource={data} onChange={onChange} />;
+      <Table
+        columns={columns}
+        dataSource={data}
+        onChange={onChange}
+        rowKey={"maPhim"}
+      />
+      ;
     </div>
   );
 }

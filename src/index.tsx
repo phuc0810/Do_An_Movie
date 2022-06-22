@@ -5,9 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./i18n";
 
-//Cấu hình realtime (websocket với signalR)
-import * as signalR from "@aspnet/signalr";
-
 //setup redux
 import { Provider } from "react-redux";
 // setup antd
