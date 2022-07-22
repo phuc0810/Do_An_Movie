@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import _ from "lodash";
-import { USER_LOGIN } from "@types";
+import { ACCESSTOKEN, USER_LOGIN } from "@types";
 import { useSelectorQuanLyNguoiDung } from "redux/store/QuanLyNguoiDung";
 import { TOKEN_CYBERSOFT } from "util/settings/config";
 
@@ -78,7 +78,7 @@ export default function HomeTemplates(props: Props) {
           <button
             onClick={() => {
               localStorage.removeItem(USER_LOGIN);
-              localStorage.removeItem(TOKEN_CYBERSOFT);
+              localStorage.removeItem(ACCESSTOKEN);
               history.push("/home");
               window.location.reload();
             }}
@@ -122,18 +122,6 @@ export default function HomeTemplates(props: Props) {
                   <Menu.Item key="3" icon={<DesktopOutlined />}>
                     <NavLink to="/admin/showtimes">Showtime</NavLink>
                   </Menu.Item>
-                  {/* <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="9" icon={<FileOutlined />}>
-                            Files
-                        </Menu.Item> */}
                 </Menu>
               </Sider>
               <Layout className="site-layout">
