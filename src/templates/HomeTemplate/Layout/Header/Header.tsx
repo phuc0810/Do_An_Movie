@@ -18,7 +18,7 @@ export default function Header(props: Props) {
   };
 
   return (
-    <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100 bg-zinc-600/40 fixed w-full z-10 ">
+    <header className="p-4 dark:bg-coolGray-800 dark:text-coolGray-100 bg-zinc-600/70 fixed w-full z-10 ">
       <div className="container flex justify-between h-16 mx-auto">
         <NavLink
           rel="noopener noreferrer"
@@ -38,7 +38,7 @@ export default function Header(props: Props) {
             <NavLink
               rel="noopener noreferrer"
               to="/home"
-              className=" flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 hover:text-yellow-500 border-none"
+              className="font-bold text-xl flex items-center px-4 -mb-1 border-b-2 dark:border-transparent dark:text-violet-400 dark:border-violet-400 hover:text-yellow-500 border-none"
               activeClassName="text-yellow-500"
             >
               Home
@@ -48,7 +48,7 @@ export default function Header(props: Props) {
             <NavLink
               rel="noopener noreferrer"
               to="/contact"
-              className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent border-none hover:text-yellow-500"
+              className="font-bold text-xl flex items-center px-4 -mb-1 border-b-2 dark:border-transparent border-none hover:text-yellow-500"
               activeClassName="text-yellow-500"
             >
               Contact
@@ -58,7 +58,7 @@ export default function Header(props: Props) {
             <NavLink
               rel="noopener noreferrer"
               to="/new"
-              className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent border-none hover:text-yellow-500"
+              className="font-bold text-xl flex items-center px-4 -mb-1 border-b-2 dark:border-transparent border-none hover:text-yellow-500"
               activeClassName="text-yellow-500"
             >
               News
@@ -67,14 +67,14 @@ export default function Header(props: Props) {
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
           <button
-            className="self-center px-8 py-3 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-3"
             onClick={() => {
               history.push("/login");
             }}
           >
-            {t("signin")}
+            Sign in
           </button>
-          <button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-coolGray-900">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Sign up
           </button>
         </div>
@@ -94,7 +94,7 @@ export default function Header(props: Props) {
             />
           </svg>
         </button>
-        <div>
+        {/* <div>
           <Select
             defaultValue="en"
             style={{ width: 120 }}
@@ -104,7 +104,7 @@ export default function Header(props: Props) {
             <Option value="chi">chi</Option>
             <Option value="en">en</Option>
           </Select>
-        </div>
+        </div> */}
       </div>
     </header>
   );
