@@ -89,7 +89,7 @@ export default function HomeMenu(props: Props) {
                                 return (
                                   <NavLink
                                     className="text-lg text-green-500"
-                                    to="/"
+                                    to="/login"
                                     key={i}
                                   >
                                     {moment(lich.ngayChieuGioChieu).format(
